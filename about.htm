@@ -23,6 +23,298 @@
 
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
+  
+  <style>
+    /* CV Button Styles */
+    .cv-btn-container {
+      text-align: center;
+      margin: 30px 0;
+    }
+    
+    .cv-btn {
+      background: linear-gradient(135deg, #2cbdee 0%, #adff2f 100%);
+      color: #141b27;
+      border: none;
+      padding: 12px 30px;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 16px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(44, 189, 238, 0.3);
+      display: inline-flex;
+      align-items: center;
+    }
+    
+    .cv-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(44, 189, 238, 0.4);
+    }
+    
+    .cv-btn i {
+      margin-left: 8px;
+      transition: transform 0.3s ease;
+    }
+    
+    .cv-btn:hover i {
+      transform: translateX(5px);
+    }
+    
+    /* CV Modal Overlay */
+    .cv-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(20, 27, 39, 0.9);
+      z-index: 9999;
+      overflow-y: auto;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    
+    .cv-modal.show {
+      opacity: 1;
+    }
+    
+    /* CV Card Styles */
+    .cv-card {
+      background: #1c2330;
+      border-radius: 12px;
+      box-shadow: 0 10px 50px rgba(0, 0, 0, 0.5);
+      max-width: 800px;
+      margin: 50px auto;
+      padding: 40px;
+      border-left: 5px solid #2cbdee;
+      transform: scale(0.8);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      position: relative;
+      opacity: 0;
+    }
+    
+    .cv-modal.show .cv-card {
+      transform: scale(1);
+      opacity: 1;
+    }
+    
+    .cv-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 30px;
+      border-bottom: 1px solid rgba(44, 189, 238, 0.2);
+      padding-bottom: 20px;
+    }
+    
+    .cv-avatar {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid #2cbdee;
+      margin-right: 25px;
+      box-shadow: 0 5px 15px rgba(44, 189, 238, 0.3);
+    }
+    
+    .cv-name {
+      color: #adff2f;
+      font-size: 32px;
+      margin-bottom: 5px;
+      font-family: 'Orbitron', sans-serif;
+    }
+    
+    .cv-title {
+      color: #2cbdee;
+      font-size: 20px;
+      letter-spacing: 1px;
+    }
+    
+    .cv-section {
+      margin-bottom: 30px;
+    }
+    
+    .cv-section-title {
+      color: #adff2f;
+      font-size: 22px;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      font-family: 'Orbitron', sans-serif;
+    }
+    
+    .cv-section-title i {
+      margin-right: 12px;
+      color: #2cbdee;
+      font-size: 24px;
+    }
+    
+    .cv-item {
+      margin-bottom: 20px;
+      padding-left: 15px;
+      border-left: 2px solid rgba(44, 189, 238, 0.3);
+    }
+    
+    .cv-item-title {
+      color: #fff;
+      font-weight: 600;
+      margin-bottom: 8px;
+      font-size: 18px;
+    }
+    
+    .cv-item-subtitle {
+      color: #c0c0c0;
+      font-size: 15px;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+    }
+    
+    .cv-item-subtitle i {
+      margin-right: 8px;
+      color: #2cbdee;
+    }
+    
+    .cv-item-desc {
+      color: #c0c0c0;
+      font-size: 15px;
+      line-height: 1.7;
+    }
+    
+    .cv-skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    
+    .cv-skill {
+      background: rgba(44, 189, 238, 0.1);
+      color: #2cbdee;
+      padding: 8px 18px;
+      border-radius: 20px;
+      font-size: 14px;
+      border: 1px solid rgba(44, 189, 238, 0.3);
+      transition: all 0.3s ease;
+    }
+    
+    .cv-skill:hover {
+      background: rgba(44, 189, 238, 0.2);
+      transform: translateY(-2px);
+    }
+    
+    .close-cv {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      color: #c0c0c0;
+      font-size: 28px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+    }
+    
+    .close-cv:hover {
+      color: #adff2f;
+      background: rgba(255, 255, 255, 0.1);
+      transform: rotate(90deg);
+    }
+    
+    /* Download Button */
+    .download-cv {
+      background: linear-gradient(135deg, #2cbdee 0%, #adff2f 100%);
+      color: #141b27;
+      border: none;
+      padding: 10px 25px;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 15px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      margin-top: 20px;
+      box-shadow: 0 4px 15px rgba(44, 189, 238, 0.3);
+    }
+    
+    .download-cv:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(44, 189, 238, 0.4);
+    }
+    
+    .download-cv i {
+      margin-right: 8px;
+    }
+    
+    /* Responsive adjustments */
+    @media (max-width: 992px) {
+      .cv-card {
+        max-width: 90%;
+        padding: 30px;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .cv-header {
+        flex-direction: column;
+        text-align: center;
+      }
+      
+      .cv-avatar {
+        margin-right: 0;
+        margin-bottom: 20px;
+        width: 120px;
+        height: 120px;
+      }
+      
+      .cv-card {
+        padding: 25px;
+        margin: 30px auto;
+      }
+      
+      .cv-name {
+        font-size: 28px;
+      }
+    }
+    
+    @media (max-width: 576px) {
+      .cv-card {
+        padding: 20px 15px;
+      }
+      
+      .cv-section-title {
+        font-size: 20px;
+      }
+      
+      .cv-item-title {
+        font-size: 16px;
+      }
+    }
+
+    .cta-button, .cv-btn {
+    display: inline-block; /* Ensures both are inline */
+    margin-right: 15px; /* Adds space between buttons */
+    padding: 10px 20px; /* Adjusts button size */
+    text-decoration: none;
+    border-radius: 5px;
+  }
+
+  .cv-btn {
+      background-color: #007bff; /* Change color if needed */
+      color: white;
+      border: none;
+      cursor: pointer;
+  }
+
+  .cv-btn:hover {
+      background-color: #0056b3;
+  }
+
+  </style>
 </head>
 
 <body>
@@ -70,12 +362,11 @@
               <div class="img-overlay">
                 <div class="overlay-content">
                   <h4>Alex</h4>
-                  <p>Cybersecurity Enthusiast</p>
+                  <p>Cybersecurity Enthusiast & Dog Lover</p>
                 </div>
               </div>
             </div>
             
-            <!-- Beyond Technology Section moved here -->
             <div class="hobbies-section">
               <h4>Beyond Technology</h4>
               <div class="hobbies-grid">
@@ -87,8 +378,12 @@
                   <i class="bi bi-camera"></i>
                   <span>Photography</span>
                 </div>
+                <div class="hobby-item">
+                  <i class="bi bi-dog"></i>
+                  <span>Dogs</span>
+                </div>
               </div>
-              <p class="hobbies-description">These creative outlets provide fresh perspectives that enhance my technical work.</p>
+              <p class="hobbies-description">These passions provide fresh perspectives that enhance my technical work.</p>
             </div>
           </div>
           
@@ -112,12 +407,13 @@
                 
                 <p>My love for technology drives me to take on challenging projects that enhance my technical expertise and problem-solving abilities. I thrive in environments that push me to grow and innovate.</p>
                 
-                <p>I'm committed to continuous learning and regularly seek out training opportunities to stay current with cybersecurity advancements. I adapt quickly to new challenges and perform well under pressure.</p>
+                <p>When I'm not coding or researching security vulnerabilities, you can find me biking through nature, capturing moments with my camera, or playing with dogs. I believe these diverse interests help me approach technical challenges with creativity and balance.</p>
               </div>
               
               <div class="call-to-action">
-                <p>I'm always eager to connect with mentors, tech enthusiasts, and professionals who share my passions.</p>
+                <p>I'm always eager to connect with mentors, tech enthusiasts, and fellow dog lovers who share my passions.</p>
                 <a href="contact.htm" class="cta-button">Get in Touch</a>
+                <button class="cv-btn" onclick="openCV()">View My CV </button>
               </div>
             </div>
           </div>
@@ -125,21 +421,102 @@
       </div>
     </section><!-- End About Section -->
 
+    <!-- CV Modal -->
+    <div id="cv-modal" class="cv-modal">
+      <div class="cv-card">
+        <span class="close-cv" onclick="closeCV()">&times;</span>
+        
+        <div class="cv-header">
+          <img src="assets/img/about.jpeg" alt="Alex" class="cv-avatar">
+          <div>
+            <h2 class="cv-name">Alex Mwangi</h2>
+            <p class="cv-title">Cybersecurity Student & Developer</p>
+          </div>
+        </div>
+        
+        <div class="cv-section">
+          <h3 class="cv-section-title"><i class="bi bi-person"></i> About Me</h3>
+          <p class="cv-item-desc">Passionate Computer Science student specializing in cybersecurity with hands-on experience in various programming languages and security frameworks. Committed to continuous learning and staying current with the latest security trends and technologies.</p>
+        </div>
+        
+        <div class="cv-section">
+          <h3 class="cv-section-title"><i class="bi bi-mortarboard"></i> Education</h3>
+          <div class="cv-item">
+            <h4 class="cv-item-title">BSc Computer Science</h4>
+            <p class="cv-item-subtitle"><i class="bi bi-building"></i> Kibabii University | 2021 - Present</p>
+            <p class="cv-item-desc">Specializing in cybersecurity and programming with coursework in network security, ethical hacking, and secure software development.</p>
+          </div>
+        </div>
+        
+        <div class="cv-section">
+          <h3 class="cv-section-title"><i class="bi bi-award"></i> Certifications</h3>
+          <div class="cv-item">
+            <h4 class="cv-item-title">AWS Certified Cloud Practitioner</h4>
+            <p class="cv-item-subtitle"><i class="bi bi-calendar"></i> Amazon Web Services | 2023</p>
+          </div>
+          <div class="cv-item">
+            <h4 class="cv-item-title">Google Cybersecurity Professional</h4>
+            <p class="cv-item-subtitle"><i class="bi bi-calendar"></i> Google | 2023</p>
+          </div>
+        </div>
+        
+        <div class="cv-section">
+          <h3 class="cv-section-title"><i class="bi bi-code-slash"></i> Technical Skills</h3>
+          <div class="cv-skills">
+            <span class="cv-skill">Python</span>
+            <span class="cv-skill">Cybersecurity</span>
+            <span class="cv-skill">Network Security</span>
+            <span class="cv-skill">AWS</span>
+            <span class="cv-skill">Linux</span>
+            <span class="cv-skill">Git</span>
+            <span class="cv-skill">Ethical Hacking</span>
+            <span class="cv-skill">JavaScript</span>
+            <span class="cv-skill">Penetration Testing</span>
+            <span class="cv-skill">Docker</span>
+            <span class="cv-skill">Cryptography</span>
+            <span class="cv-skill">SQL</span>
+          </div>
+        </div>
+        
+        <div class="cv-section">
+          <h3 class="cv-section-title"><i class="bi bi-heart"></i> Interests</h3>
+          <div class="cv-skills">
+            <span class="cv-skill">Cybersecurity Research</span>
+            <span class="cv-skill">Open Source Projects</span>
+            <span class="cv-skill">Biking</span>
+            <span class="cv-skill">Photography</span>
+            <span class="cv-skill">Dog Training</span>
+            <span class="cv-skill">Tech Communities</span>
+          </div>
+        </div>
+        
+        <div style="text-align: center;">
+          <a href="assets/docs/cv.pdf" target="_blank">
+            <button class="download-cv" onclick="downloadCV()">
+              <i class="bi bi-download"></i> Download CV
+            </button>
+          </a>
+        </div>
+      </div>
+    </div>
+
   </main><!-- End #main -->
 
   <!-- ======= Footer ======= -->
   <footer id="footer">
-    <div class="copyright">
-      &copy; 2023. Alex.
+    <div class="container">
+      <div class="copyright">
+        &copy; 2023. Alex
+      </div>
+      <div class="footer-social-links">
+        <a href="https://x.com/Iam4lex" class="twitter"><i class="bi bi-twitter-x"></i></a>
+        <a href="https://www.instagram.com/Iqm4lex/" class="instagram"><i class="bi bi-instagram"></i></a>
+        <a href="https://www.linkedin.com/in/Iam4lex" class="linkedin"><i class="bi bi-linkedin"></i></a>
+        <a href="https://discord.com/users/Iam4lex" class="discord"><i class="bi bi-discord"></i></a>
+        <a href="https://github.com/Iam4lex" class="github"><i class="bi bi-github"></i></a>
+      </div>
     </div>
-    <div class="header-social-links">
-      <a href="https://x.com/stilla1ex" class="twitter"><i class="bi bi-twitter-x"></i></a>
-      <a href="https://www.instagram.com/stilla1ex" class="instagram"><i class="bi bi-instagram"></i></a>
-      <a href="https://www.linkedin.com/in/stilla1ex" class="linkedin"><i class="bi bi-linkedin"></i></i></a>
-      <a href="https://discord.com/users/stilla1ex" class="discord"><i class="bi bi-discord"></i></a>
-      <a href="https://github.com/stilla1ex" class="github"><i class="bi bi-github"></i></i></a>
-    </div>
-  </footer><!-- End  Footer -->
+  </footer><!-- End Footer -->
 
   <div id="preloader"></div>
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
@@ -156,5 +533,40 @@
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
+  
+  <script>
+    function openCV() {
+      const modal = document.getElementById('cv-modal');
+      modal.style.display = 'block';
+      setTimeout(() => {
+        modal.classList.add('show');
+      }, 10);
+      document.body.style.overflow = 'hidden'; // Prevent scrolling
+    }
+    
+    function closeCV() {
+      const modal = document.getElementById('cv-modal');
+      modal.classList.remove('show');
+      setTimeout(() => {
+        modal.style.display = 'none';
+      }, 300);
+      document.body.style.overflow = 'auto'; // Re-enable scrolling
+    }
+    
+    // Close modal when clicking outside the card
+    document.addEventListener('click', function(event) {
+      const modal = document.getElementById('cv-modal');
+      if (event.target === modal) {
+        closeCV();
+      }
+    });
+    
+    // Close modal with Escape key
+    document.addEventListener('keydown', function(event) {
+      if (event.key === 'Escape') {
+        closeCV();
+      }
+    });
+  </script>
 </body>
 </html>
