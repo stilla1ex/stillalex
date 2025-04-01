@@ -26,6 +26,33 @@
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
 
+  <!-- Notification CSS -->
+  <style>
+    .notification {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      padding: 15px 25px;
+      background-color: #4CAF50;
+      color: white;
+      border-radius: 4px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      z-index: 1000;
+      opacity: 0;
+      transform: translateY(-20px);
+      transition: opacity 0.3s, transform 0.3s;
+    }
+    
+    .notification.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    .notification.error {
+      background-color: #f44336;
+    }
+  </style>
+
   <!-- EMAILJS Script -->
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   <script type="text/javascript">
@@ -104,13 +131,13 @@
     <div class="copyright">
       &copy; 2023. ALex
     </div>
-  <div class="header-social-links">
-        <a href="https://x.com/Iam4lex" class="twitter"><i class="bi bi-twitter-x"></i></a>
-        <a href="https://www.instagram.com/Iqm4lex/" class="instagram"><i class="bi bi-instagram"></i></a>
-        <a href="https://www.linkedin.com/in/Iam4lex" class="linkedin"><i class="bi bi-linkedin"></i></i></a>
-        <a href="https://discord.com/users/Iam4lex" class="discord"><i class="bi bi-discord"></i></a>
-        <a href="https://github.com/Iam4lex" class="github"><i class="bi bi-github"></i></i></a>
-      </div>
+    <div class="header-social-links">
+      <a href="https://x.com/Iam4lex" class="twitter"><i class="bi bi-twitter-x"></i></a>
+      <a href="https://www.instagram.com/Iqm4lex/" class="instagram"><i class="bi bi-instagram"></i></a>
+      <a href="https://www.linkedin.com/in/Iam4lex" class="linkedin"><i class="bi bi-linkedin"></i></i></a>
+      <a href="https://discord.com/users/Iam4lex" class="discord"><i class="bi bi-discord"></i></a>
+      <a href="https://github.com/Iam4lex" class="github"><i class="bi bi-github"></i></i></a>
+    </div>
   </footer><!-- End Footer -->
 
   <div id="preloader"></div>
@@ -134,6 +161,12 @@
     function sendEmail(event) {
       event.preventDefault(); // Prevent form submission
 
+      // Show loading state
+      const submitBtn = event.target.querySelector('button[type="submit"]');
+      const originalBtnText = submitBtn.textContent;
+      submitBtn.textContent = 'Sending...';
+      submitBtn.disabled = true;
+
       var params = {
         name: document.getElementById("name").value,
         email: document.getElementById("email").value,
@@ -145,17 +178,57 @@
 
       emailjs.send(serviceID, templateID, params)
         .then(res => {
-          // Clear from fields after submision
+          // Clear form fields after submission
           document.getElementById("name").value = "";
           document.getElementById("email").value = "";
           document.getElementById("message").value = "";
           console.log(res);
-          alert("Message sent successfully");
+          
+          // Show success notification
+          showNotification("Message sent successfully!");
         })
         .catch(err => {
           console.error("Error:", err);
-          alert("Failed to send message. Please check your internet connection or try again later");
+          // Show error notification
+          showNotification("Failed to send message. Please try again later.", true);
+        })
+        .finally(() => {
+          // Reset button state
+          submitBtn.textContent = originalBtnText;
+          submitBtn.disabled = false;
         });
+    }
+
+    function showNotification(message, isError = false) {
+      // Create notification element if it doesn't exist
+      let notification = document.querySelector('.notification');
+      if (!notification) {
+        notification = document.createElement('div');
+        notification.className = 'notification';
+        document.body.appendChild(notification);
+      }
+      
+      // Set message and style
+      notification.textContent = message;
+      notification.className = 'notification';
+      if (isError) {
+        notification.classList.add('error');
+      }
+      
+      // Show notification
+      notification.classList.add('show');
+      
+      // Hide after 3 seconds
+      setTimeout(() => {
+        notification.classList.remove('show');
+        
+        // Remove element after animation completes
+        setTimeout(() => {
+          if (notification.parentNode) {
+            notification.parentNode.removeChild(notification);
+          }
+        }, 300);
+      }, 3000);
     }
   </script>
 

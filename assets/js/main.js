@@ -244,25 +244,5 @@
 * MAIL
 * 
 */
-function sendEmail(){
-  var params = {
-    name : document.getElementById("name").value,
-    email : document.getElementById("email").value,
-    message : document.getElementById("message").value,
-  };
 
-  const serviceID = "service_7ot0jup";
-  const templateID = "template_wp5h21r";
-
-  emailjs.send(serviceID,templateID,params)
-  .then(
-    res =>{
-      document.getElementById("name") = "";
-      document.getElementById("email") = "";
-      document.getElementById("message") = "";
-      console.log(res);
-      alert("Message sent successfully");
-    }
-  )
-}
 
