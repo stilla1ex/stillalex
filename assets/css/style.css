@@ -987,50 +987,6 @@ section {
   color: #2cbdee;
 }
 
-/* Badges Section */
-.badges-row {
-  margin-top: 30px;
-}
-
-.badge-item {
-  margin-bottom: 30px;
-}
-
-.badge-card {
-  position: relative;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-  transition: all 0.3s ease;
-}
-
-.badge-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
-}
-
-.badge-card img {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
-.badge-overlay {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: rgba(20, 27, 39, 0.9);
-  padding: 15px;
-  text-align: center;
-}
-
-.badge-overlay h5 {
-  color: #fff;
-  margin: 0;
-  font-size: 16px;
-}
-
 /* Projects Section */
 .project-item {
   background: #1c2330;

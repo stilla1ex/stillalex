@@ -27,6 +27,195 @@
   <!-- Favicon  -->
   <link rel="icon" type="image/png" href="/assets/img/about.jpeg">
 
+  <!-- Internal CSS for Hacker Theme -->
+  <style>
+    :root {
+      --hacker-green: #00ff00;
+      --matrix-green: #20c20e;
+      --dark-bg: #0a0a0a;
+      --darker-bg: #050505;
+      --terminal-bg: #121212;
+      --terminal-text: #00ff41;
+      --glow: 0 0 5px var(--hacker-green), 0 0 10px var(--hacker-green);
+    }
+
+      /* Certifications List */
+    .cert-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .cert-list li {
+      margin-bottom: 15px;
+      position: relative;
+      padding-left: 30px;
+    }
+
+    .cert-list li:before {
+      content: ">";
+      position: absolute;
+      left: 0;
+      color: var(--hacker-green);
+    }
+
+    .cert-list a {
+      color: var(--hacker-green);
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+
+    .cert-list a:hover {
+      color: white;
+    }
+
+    .cert-list i {
+      margin-right: 10px;
+    }
+
+    /* Projects Section */
+    .project-item {
+      background-color: #0e1118bb;
+      margin-bottom: 30px;
+      padding: 20px;
+    }
+
+    .project-item h3 {
+      color: var(--matrix-green);
+      border-bottom: 1px dashed var(--hacker-green);
+      padding-bottom: 10px;
+    }
+
+    .project-links a {
+      color: var(--hacker-green);
+      text-decoration: none;
+      margin-right: 15px;
+      border: 1px solid var(--hacker-green);
+      padding: 5px 10px;
+      display: inline-block;
+      margin-top: 10px;
+    }
+
+    .project-links a:hover {
+      background-color: var(--hacker-green);
+      color: black;
+    }
+
+    .project-tech {
+      margin-top: 15px;
+    }
+
+    .tech-tag {
+      display: inline-block;
+      background-color: rgba(0, 255, 0, 0.1);
+      color: var(--hacker-green);
+      padding: 3px 10px;
+      margin-right: 10px;
+      margin-bottom: 10px;
+      font-size: 0.8em;
+      border: 1px solid var(--hacker-green);
+    }
+
+    /* Technologies Section */
+    .tech-section {
+      margin-bottom: 30px;
+    }
+
+    .tech-section h4 {
+      color: var(--matrix-green);
+      border-bottom: 1px dashed var(--hacker-green);
+      padding-bottom: 5px;
+    }
+
+    .tech-icons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-top: 15px;
+    }
+
+    .tech-icon {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 80px;
+    }
+
+    .tech-icon i {
+      font-size: 2rem;
+      color: var(--hacker-green);
+      margin-bottom: 5px;
+    }
+
+    .tech-icon span {
+      font-size: 0.8rem;
+      text-align: center;
+    }
+
+    /* Terminal Section */
+    .terminal {
+      background-color: #0e1118bb;
+      border-radius: 5px;
+      padding: 15px;
+      font-family: 'Courier New', monospace;
+      color: var(--terminal-text);
+      margin: 30px 0;bash — 80×24;
+    }
+
+    .terminal-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 15px;
+      border-bottom: 1px solid var(--hacker-green);
+      padding-bottom: 5px;
+      background-color: #0e1118bb;
+    }
+
+    .terminal-dots {
+      display: flex;
+      gap: 5px;
+      margin-right: 10px;
+    }
+
+    .terminal-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+    }
+
+    .terminal-dot.red {
+      background-color: #ff5f56;
+    }
+
+    .terminal-dot.yellow {
+      background-color: #ffbd2e;
+    }
+
+    .terminal-dot.green {
+      background-color: #27c93f;
+    }
+
+    .terminal-title {
+      flex-grow: 1;
+      text-align: center;
+    }
+
+    .terminal-body {
+      line-height: 1.5;
+    }
+
+    .terminal-prompt {
+      color: var(--terminal-text);
+    }
+
+    .terminal-command {
+      color: white;
+    }
+
+    .terminal-output {
+      margin-top: 10px;
+      color: var(--terminal-text);
+    }
+  </style>
 </head>
 
 <body>
@@ -113,36 +302,45 @@
         </div>
       </div>
 
+      <!-- Terminal Section -->
       <div class="container" data-aos="fade-up">
-        <div class="section-title">
-          <h2>Badges</h2>
-        </div>
-
-        <div class="row badges-row">
-          <div class="col-lg-4 col-md-6 badge-item">
-            <div class="badge-card">
-              <img src="assets/badges/aws-certified-cloud-practitioner.png" class="img-fluid" alt="AWS Certified Cloud Practitioner">
-              <div class="badge-overlay">
-                <h5>AWS Certified Cloud Practitioner</h5>
-              </div>
+        <div class="terminal">
+          <div class="terminal-header">
+            <div class="terminal-dots">
+              <div class="terminal-dot red"></div>
+              <div class="terminal-dot yellow"></div>
+              <div class="terminal-dot green"></div>
             </div>
+            <div class="terminal-title">bash — 80×24</div>
           </div>
-          
-          <div class="col-lg-4 col-md-6 badge-item">
-            <div class="badge-card">
-              <img src="assets/badges/google.png" class="img-fluid" alt="Google Cybersecurity Professional">
-              <div class="badge-overlay">
-                <h5>Google Cybersecurity Professional</h5>
-              </div>
+          <div class="terminal-body">
+            <div class="terminal-line">
+              <span class="terminal-prompt">user@alex-portfolio:~$</span>
+              <span class="terminal-command"> whoami</span>
             </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 badge-item">
-            <div class="badge-card">
-              <img src="assets/badges/ethical-hacker.png" class="img-fluid" alt="Cisco Ethical Hacker">
-              <div class="badge-overlay">
-                <h5>Cisco Ethical Hacker</h5>
-              </div>
+            <div class="terminal-output">alex — cybersecurity specialist & cloud engineer</div>
+            
+            <div class="terminal-line">
+              <span class="terminal-prompt">user@alex-portfolio:~$</span>
+              <span class="terminal-command"> ls skills/</span>
+            </div>
+            <div class="terminal-output">
+              cloud-security  penetration-testing  python  aws  malware-analysis  network-defense
+            </div>
+            
+            <div class="terminal-line">
+              <span class="terminal-prompt">user@alex-portfolio:~$</span>
+              <span class="terminal-command"> cat projects/</span>
+            </div>
+            <div class="terminal-output">
+              <div>- Malware Analysis & Detection System</div>
+              <div>- Tic Tac Toe AI Implementation</div>
+              <div>- Cloud Security Automation Tools</div>
+            </div>
+            
+            <div class="terminal-line">
+              <span class="terminal-prompt">user@alex-portfolio:~$</span>
+              <span class="terminal-command blink">_</span>
             </div>
           </div>
         </div>
@@ -282,5 +480,18 @@
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
+
+  <!-- Terminal Animation Script -->
+  <script>
+    // Make terminal cursor blink
+    document.addEventListener('DOMContentLoaded', function() {
+      const cursor = document.querySelector('.blink');
+      if (cursor) {
+        setInterval(() => {
+          cursor.style.visibility = (cursor.style.visibility === 'hidden' ? 'visible' : 'hidden');
+        }, 500);
+      }
+    });
+  </script>
 </body>
 </html>
